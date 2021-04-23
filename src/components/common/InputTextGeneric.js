@@ -1,9 +1,16 @@
 import React from "react";
 import {TextField} from '@material-ui/core';
 
-const InputTextGeneric = ({Label="label"}) => {
+const InputTextGeneric = ({Name,Label="label",value, onChange}) => {
     return(
-        <TextField id="outlined-basic" label={Label} variant="outlined" />
+        <TextField
+            name={Name}
+            id="outlined-basic"
+            label={Label}
+            variant="outlined"
+            value={value}
+            onChange={onChange}
+        />
     )
 }
 

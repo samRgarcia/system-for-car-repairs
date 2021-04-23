@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -39,7 +39,7 @@ function getStepContent(step) {
 }
 
 function DetailSend() {
-    return(<div>
+    return (<div>
         <h1>Post Problem</h1>
     </div>)
 }
@@ -92,6 +92,11 @@ export default function MainStepper() {
         setActiveStep(0);
     };
 
+    const sendProblems = () => {
+        //Todo: execute fetche method
+        console.log("send")
+    }
+
     return (
         <div className={classes.root}>
             <Stepper activeStep={activeStep}>
@@ -139,14 +144,24 @@ export default function MainStepper() {
                                 </Button>
                             )}
 
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleNext}
-                                className={classes.button}
-                            >
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                            </Button>
+                            {activeStep === steps.length - 1 ?
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={sendProblems}
+                                    className={classes.button}
+                                >
+                                    Save problems
+                                </Button> :
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleNext}
+                                    className={classes.button}
+                                >
+                                    Next
+                                </Button>}
+
                         </div>
                     </div>
                 )}
