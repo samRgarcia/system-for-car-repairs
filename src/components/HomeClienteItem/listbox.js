@@ -6,7 +6,7 @@ const ListModuleClient=[
     {name:"Register Problems",url:"/new-problem"},
     {name:"List price",url:"/all-price"},
     {name:"Suggestions",url:"all-suggestions"},
-    {name:"History problems",url:"all-history-cliente"},
+    {name:"History problems",url:"history-cliente"},
 ]
 
 const ListBox =()=>{

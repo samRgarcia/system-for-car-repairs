@@ -23,30 +23,29 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CardSuggestions() {
+export default function CardSuggestions({data}) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-
     return (
         <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Word of the Day
+                    { `${data.model} - ${data.license_place}` }
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                    {`${data.name} ${data.first_name} ${data.last_name} `}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    adjective
+                    Mechanical
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                    {data.descriptions}
+                </Typography>
+                <Typography variant="body2" component="p">
+                    Status:{data.advance}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small">Ap</Button>
             </CardActions>
         </Card>
     );

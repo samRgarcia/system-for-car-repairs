@@ -23,30 +23,31 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CardList() {
+export default function CardList(props) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Word of the Day
+                    { `${props.data.model} -${props.data.license_place}`}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                    {`${props.data.name} ${props.data.first_name} ${props.data.last_name}`}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    adjective
+                    Mechanical
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
+                    {props.data.suggestions}
                     <br />
-                    {'"a benevolent smile"'}
+                    {`$ ${props.data.price}`}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small">Acept</Button>
+                <Button size="small">deny</Button>
+
             </CardActions>
         </Card>
     );
