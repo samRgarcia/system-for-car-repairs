@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import axios from "axios";
+import {RegisterCarProblems} from "../Context/ContextRegisterCarProblems";
 import {makeStyles} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -7,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import RegisterFormCar from "./RegisterFormCar";
 import DescriptionProblemsCar from "./DescriptionProblemsCar";
+import {REGISTER_NEW_PROBLEMS} from "../costants/urls";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,6 +49,7 @@ function DetailSend() {
 
 export default function MainStepper() {
     const classes = useStyles();
+    const {registerProblems,problems,listProblems} = useContext(RegisterCarProblems)
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
@@ -92,8 +96,18 @@ export default function MainStepper() {
         setActiveStep(0);
     };
 
-    const sendProblems = () => {
+    const sendProblems = async () => {
         //Todo: execute fetche method
+       await axios.post(REGISTER_NEW_PROBLEMS,{
+            registerProblems,
+            problems,
+            listProblems
+        }).then((res)=>{
+            console.log(res)
+       }).catch((e)=>{
+           console.log(e)
+       })
+
         console.log("send")
     }
 
