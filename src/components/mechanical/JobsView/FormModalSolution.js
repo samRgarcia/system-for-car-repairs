@@ -1,10 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ModalGeneric from "../../common/ModalGeneric";
 import InputTextGeneric from "../../common/InputTextGeneric";
+import axios from "axios";
+import {REGISTER_SUGGEST} from "../../costants/urls";
 
 const FormModalSolutions = ({isForm, setIsForm, seeMore, setSeeMore}) => {
+    const [state, setState] = useState({
+        solution: "",
+        price: ""
+    })
+
+    const handlChange = (evt) => {
+            setState({
+                ...state,
+                [evt.target.name]:evt.target.value
+            })
+    }
+
     const sendSuggestions = (data) => {
-            console.log(data)
+        console.log(data)
+        console.log(state)
+        executeShipment(data)
+    }
+
+    const executeShipment = async (data) => {
+       await axios.post(REGISTER_SUGGEST, {
+            suggestions: state.solution,
+            price: state.price,
+            idCard: data.idcars,
+            mechanicalStaff: 1
+        })
+           .then((res)=>{
+               console.log(res)
+           })
+           .catch((e)=>{
+               console.log(e)
+           })
     }
 
     return (
@@ -17,8 +48,18 @@ const FormModalSolutions = ({isForm, setIsForm, seeMore, setSeeMore}) => {
             onClick={sendSuggestions}
         >
             <form>
-                <InputTextGeneric Label="Solutions"/>
-                <InputTextGeneric Label="$ price"/>
+                <InputTextGeneric
+                    Name="solution"
+                    Label="Solutions"
+                    value={state.solution}
+                    onChange={handlChange}
+                />
+                <InputTextGeneric
+                    Name="price"
+                    Label="$ price"
+                    value={state.price}
+                    onChange={handlChange}
+                />
             </form>
         </ModalGeneric>
 
