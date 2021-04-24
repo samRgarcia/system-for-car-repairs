@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import CardList from "./CardList";
 
 const ListAllPrice = ({data}) => {
+    console.log(data,"all price")
     return (
         <Grid container spacing={3}>
             {data.map(item => (

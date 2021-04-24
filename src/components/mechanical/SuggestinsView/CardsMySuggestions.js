@@ -67,7 +67,7 @@ function CardsMySuggestions(props) {
             <CardActions>
                 <Button
                     size="small"
-                    disabled={props.data.status === "accepted" ? false : true}
+                    disabled={props.data.status === "approved" ? false : true}
                     onClick={() => initaliWork(props.data)}
                 >start work</Button>
 

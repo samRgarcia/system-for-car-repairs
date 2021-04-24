@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import HistoryList from "../../components/client/TroubleHistory/HistoryList";
 import axios from "axios";
-import {GET_ID_CLIENT_TRACING} from "../../components/costants/urls";
+import {GET_ID_CLIENT_TRACING_HISTORY} from "../../components/costants/urls";
 
 const HistoryView = () => {
     const [lisProbles, setProbles] = useState([]);
 
     useEffect(() => {
-        axios.get(GET_ID_CLIENT_TRACING, {params: {idClient: 1}})
+        axios.get(GET_ID_CLIENT_TRACING_HISTORY, {params: {idClient: 1}})
             .then((res) => {
                 console.log(res.data)
                 setProbles(res.data)

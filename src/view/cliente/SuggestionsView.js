@@ -9,7 +9,7 @@ const SuggestionsView = () => {
         axios.get(GET_ID_CLIENT_TRACING,{params:{idClient:1}})
             .then((res)=>{
                 setListTracing(res.data)
-                console.log(res.data)
+                console.log(res.data,"listTRacing")
 
             })
             .catch((error)=>{
@@ -17,7 +17,9 @@ const SuggestionsView = () => {
             })
     },[])
     return(
-        <ListAllSuggestions data={listTracing}/>
+        <React.Fragment>
+            <ListAllSuggestions data={listTracing}/>
+        </React.Fragment>
     )
 }
 

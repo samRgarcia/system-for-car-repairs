@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 export default function CardHistory({data}) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root}>
@@ -40,9 +39,11 @@ export default function CardHistory({data}) {
                     Mechanical employee
                 </Typography>
                 <Typography variant="body2" component="p">
-                    {data.descriptions}
+                    My problems:{data.descriptions}
                     <br />
-                    {`Date/ ${data.status}`}
+                    Solution:{data.suggestions}
+                    <br/>
+                    {`Date/ ${data.advance}`}
                 </Typography>
             </CardContent>
             <CardActions>

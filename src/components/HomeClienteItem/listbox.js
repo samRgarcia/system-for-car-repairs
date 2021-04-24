@@ -5,7 +5,7 @@ import CardRoutes from "./CardRoutes";
 const ListModuleClient=[
     {name:"Register Problems",url:"/new-problem"},
     {name:"List price",url:"/all-price"},
-    {name:"Suggestions",url:"all-suggestions"},
+    {name:"Suggestions -> tracing ",url:"all-suggestions"},
     {name:"History problems",url:"history-cliente"},
 ]
 
