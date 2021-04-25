@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import FormWork from "./FormWork";
 import axios from "axios";
 import {GET_ITEM_PROBLEMS, UPDATE_FINISH_JOB} from "../../costants/urls";
+import {ContextListAllWork} from "../../Context/ContextWorkList";
 
 const useStyles = makeStyles({
     root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 
 export default function CardWork(props) {
     const classes = useStyles();
+    const {isUpdate, setIsUpdate} = useContext(ContextListAllWork);
     const [isForm, setIsForm] = useState(false);
     const [itemProblems, setItemProblems] = useState([]);
 
@@ -48,18 +50,19 @@ export default function CardWork(props) {
     }
     const finishWork = async (idjobs_started) => {
         //idjobs_started
-          await  axios.put(UPDATE_FINISH_JOB,{
-                idjobs_started:idjobs_started
+        await axios.put(UPDATE_FINISH_JOB, {
+            idjobs_started: idjobs_started
+        })
+            .then((res) => {
+                console.log(res)
+                setIsUpdate(!isUpdate)
             })
-              .then((res)=>{
-                  console.log(res)
-              })
-              .catch((e)=>{
-                  console.log(e)
-              })
+            .catch((e) => {
+                console.log(e)
+            })
     }
 
-    return(<React.Fragment>
+    return (<React.Fragment>
             <FormWork isForm={isForm} setIsForm={setIsForm} data={itemProblems} setData={setItemProblems}/>
             <Card className={classes.root}>
                 <CardContent>
@@ -79,14 +82,14 @@ export default function CardWork(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    {props.data.advance==="finish" ?
-                        <h1>Terminado</h1>:
+                    {props.data.advance === "finish" ?
+                        <h1>Terminado</h1> :
                         <>
                             <Button onClick={() => handlOpenModal(props.data.idmechanical_problems)}
-                             size="small">Options</Button>
-                        <Button
-                        onClick={() => finishWork(props.data.idjobs_started)}
-                        size="small">finish</Button>
+                                    size="small">Options</Button>
+                            <Button
+                                onClick={() => finishWork(props.data.idjobs_started)}
+                                size="small">finish</Button>
                         </>}
                 </CardActions>
             </Card>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import {UPDATE_ACCEPTED_JOB, UPDATE_DENY_JOB} from "../../costants/urls";
+import {ContextSuggestionsList} from "../../Context/ContextSuggestionsList";
 
 const useStyles = makeStyles({
     root: {
@@ -27,6 +28,8 @@ const useStyles = makeStyles({
 
 export default function CardSuggestions({data}) {
     const classes = useStyles();
+    const {isUpdate, setIsUpdate} = useContext(ContextSuggestionsList)
+
 
     const acceptedProblems = async ({idmechanic_suggestions}) => {
         console.log('idmechanic_suggestions', idmechanic_suggestions)
@@ -43,6 +46,7 @@ export default function CardSuggestions({data}) {
         await axios.put(URL, {idmechanic_suggestions: id})
             .then((res) => {
                 console.log(res)
+                setIsUpdate(!isUpdate)
             })
             .catch((e) => {
                 console.log(e)

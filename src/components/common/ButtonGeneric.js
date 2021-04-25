@@ -1,9 +1,9 @@
 import React from "react";
 import {Button} from '@material-ui/core';
 
-const ButtonGeneric =({Title="Na",onClick})=>{
+const ButtonGeneric =({Title="Na",onClick,disabled = false})=>{
     return(
-        <Button variant="contained" color="primary" onClick={onClick}>
+        <Button disabled={disabled} variant="contained" color="primary" onClick={onClick}>
             {Title}
         </Button>
     )

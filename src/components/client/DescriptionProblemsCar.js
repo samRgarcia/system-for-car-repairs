@@ -31,7 +31,7 @@ const DescriptionProblemsCar = () => {
         });
         setDescriptionItem('')
     }
-
+console.log(listProblems )
 
     return (
         <form>
@@ -48,6 +48,7 @@ const DescriptionProblemsCar = () => {
                 value={descriptionItem}
             />
             <ButtonGeneric
+                disabled={descriptionItem ? false:true}
                 Title="Agregar"
                 onClick={addItemListProblems}
             />

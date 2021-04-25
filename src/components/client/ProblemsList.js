@@ -29,7 +29,7 @@ export default function ProblemsList({lista=[{descriptions:"..."}]}) {
             {lista.map((item) => (
                 <li key={`section-${item.descriptions}`} className={classes.listSection}>
                     <ul className={classes.ul}>
-                        <ListSubheader>{`List problems ${item.descriptions}`}</ListSubheader>
+                        <ListSubheader>{`* ${item.descriptions}`}</ListSubheader>
                     </ul>
                 </li>
             ))}

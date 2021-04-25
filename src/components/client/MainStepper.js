@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
 import {RegisterCarProblems} from "../Context/ContextRegisterCarProblems";
 import {makeStyles} from '@material-ui/core/styles';
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import RegisterFormCar from "./RegisterFormCar";
 import DescriptionProblemsCar from "./DescriptionProblemsCar";
 import {REGISTER_NEW_PROBLEMS} from "../costants/urls";
+import Loading from "../common/Loading";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+    return ['register car', 'record mechanical problems', 'Send'];
 }
 
 function getStepContent(step) {
@@ -43,15 +45,17 @@ function getStepContent(step) {
 
 function DetailSend() {
     return (<div>
-        <h1>Post Problem</h1>
+        <h1>Send problem to workshop?</h1>
     </div>)
 }
 
 export default function MainStepper() {
     const classes = useStyles();
-    const {registerProblems,problems,listProblems} = useContext(RegisterCarProblems)
+    const history = useHistory();
+    const {registerProblems, problems, listProblems,restData} = useContext(RegisterCarProblems)
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
+    const [isLoading, setIsLoading] = useState(false);
     const steps = getSteps();
 
     const isStepOptional = (step) => {
@@ -98,88 +102,88 @@ export default function MainStepper() {
 
     const sendProblems = async () => {
         //Todo: execute fetche method
-       await axios.post(REGISTER_NEW_PROBLEMS,{
+        setIsLoading(true)
+        await axios.post(REGISTER_NEW_PROBLEMS, {
             registerProblems,
             problems,
             listProblems
-        }).then((res)=>{
+        }).then((res) => {
             console.log(res)
-       }).catch((e)=>{
-           console.log(e)
-       })
+            alert("Registration done")
+            restData()
+            history.push('/home-cliente')
+        }).catch((e) => {
+            console.log(e)
+            alert("service not available")
+        }).finally(() => {
+            setIsLoading(false)
+        })
 
         console.log("send")
     }
 
     return (
-        <div className={classes.root}>
-            <Stepper activeStep={activeStep}>
-                {steps.map((label, index) => {
-                    const stepProps = {};
-                    const labelProps = {};
-                    if (isStepOptional(index)) {
-                        labelProps.optional = <Typography variant="caption">Optional</Typography>;
-                    }
-                    if (isStepSkipped(index)) {
-                        stepProps.completed = false;
-                    }
-                    return (
-                        <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>{label}</StepLabel>
-                        </Step>
-                    );
-                })}
-            </Stepper>
-            <div>
-                {activeStep === steps.length ? (
-                    <div>
-                        <Typography className={classes.instructions}>
-                            All steps completed - you&apos;re finished
-                        </Typography>
-                        <Button onClick={handleReset} className={classes.button}>
-                            Reset
-                        </Button>
-                    </div>
-                ) : (
-                    <div>
-                        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+        <React.Fragment>
+            <Loading open={isLoading}/>
+            <div className={classes.root}>
+                <Stepper activeStep={activeStep}>
+                    {steps.map((label, index) => {
+                        const stepProps = {};
+                        const labelProps = {};
+                        if (isStepOptional(index)) {
+                            labelProps.optional = <Typography variant="caption">Optional</Typography>;
+                        }
+                        if (isStepSkipped(index)) {
+                            stepProps.completed = false;
+                        }
+                        return (
+                            <Step key={label} {...stepProps}>
+                                <StepLabel {...labelProps}>{label}</StepLabel>
+                            </Step>
+                        );
+                    })}
+                </Stepper>
+                <div>
+                    {activeStep === steps.length ? (
                         <div>
-                            <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                                Back
+                            <Typography className={classes.instructions}>
+                                All steps completed - you&apos;re finished
+                            </Typography>
+                            <Button onClick={handleReset} className={classes.button}>
+                                Reset
                             </Button>
-                            {isStepOptional(activeStep) && (
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleSkip}
-                                    className={classes.button}
-                                >
-                                    Skip
-                                </Button>
-                            )}
-
-                            {activeStep === steps.length - 1 ?
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={sendProblems}
-                                    className={classes.button}
-                                >
-                                    Save problems
-                                </Button> :
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleNext}
-                                    className={classes.button}
-                                >
-                                    Next
-                                </Button>}
-
                         </div>
-                    </div>
-                )}
+                    ) : (
+                        <div>
+                            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                            <div>
+                                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                                    Back
+                                </Button>
+                                {activeStep === steps.length - 1 ?
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={sendProblems}
+                                        className={classes.button}
+                                        disabled={isLoading}
+                                    >
+                                        Save problems
+                                    </Button> :
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleNext}
+                                        className={classes.button}
+                                    >
+                                        Next
+                                    </Button>}
+
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
