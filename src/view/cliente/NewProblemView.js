@@ -1,10 +1,11 @@
 import React from "react";
 import MainStepper from "../../components/client/MainStepper";
+import Loyaut from "../../components/Loyaut";
 
-const NewProblemView =()=>{
-    return(<React.Fragment>
+const NewProblemView = () => {
+    return (<Loyaut>
         <MainStepper/>
-        </React.Fragment>)
+    </Loyaut>)
 }
 
 export default NewProblemView;

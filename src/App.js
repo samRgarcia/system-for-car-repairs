@@ -6,10 +6,12 @@ import {ProviderListSuggestions} from "../src/components/Context/ContextSuggesti
 import {ProviderListJobs} from "../src/components/Context/ContextListJob";
 import {ProviderSuggestionsJobsList} from "../src/components/Context/ContextSuggestionsJobsList";
 import {ProviderListAllWork} from "../src/components/Context/ContextWorkList";
+import {ProviderAuth} from "./components/Context/ContextAuth";
 
 
 function App() {
     return (
+        <ProviderAuth>
         <ProviderListAllWork>
             <ProviderSuggestionsJobsList>
                 <ProviderListJobs>
@@ -23,6 +25,7 @@ function App() {
                 </ProviderListJobs>
             </ProviderSuggestionsJobsList>
         </ProviderListAllWork>
+        </ProviderAuth>
     );
 }
 

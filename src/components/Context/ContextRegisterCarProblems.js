@@ -4,7 +4,7 @@ export const RegisterCarProblems = createContext();
 let initialRegisterProblems={
     model: "",
     license_place: "",
-    client_idclient: 1,
+    client_idclient: "",
 }
 let initialProblems ={
     descriptions: ""

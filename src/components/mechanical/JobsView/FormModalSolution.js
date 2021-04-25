@@ -4,8 +4,10 @@ import InputTextGeneric from "../../common/InputTextGeneric";
 import axios from "axios";
 import {REGISTER_SUGGEST} from "../../costants/urls";
 import {ContextJobsList} from "../../Context/ContextListJob";
+import {ContextAuth} from "../../Context/ContextAuth";
 
 const FormModalSolutions = ({isForm, setIsForm, seeMore, setSeeMore}) => {
+    const {userAuth} = useContext(ContextAuth);
     const {isUpdate, setIsUpdate} = useContext(ContextJobsList)
     const [state, setState] = useState({
         solution: "",
@@ -30,7 +32,7 @@ const FormModalSolutions = ({isForm, setIsForm, seeMore, setSeeMore}) => {
             suggestions: state.solution,
             price: state.price,
             idCard: data.idcars,
-            mechanicalStaff: 1
+            mechanicalStaff: userAuth.idClient
         })
             .then((res) => {
                 console.log(res)

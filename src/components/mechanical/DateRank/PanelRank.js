@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import DateInput from "./DateInput";
 import {Button} from "@material-ui/core";
 import InputTextGeneric from "../../common/InputTextGeneric";
 import axios from "axios";
 import {GET_DATE_RANKS} from "../../costants/urls";
 import ListRank from "./ListRank";
+import {ContextAuth} from "../../Context/ContextAuth";
 
 
 const PanelRank = () => {
+    const {userAuth} = useContext(ContextAuth);
     const [selectedDate, setSelectedDate] = React.useState({
         start: new Date(),
         end: new Date()
@@ -18,7 +20,7 @@ const PanelRank = () => {
     const getAmountStartEnd = async () => {
         await axios.get(GET_DATE_RANKS, {
             params: {
-                idMechanic: 1,
+                idMechanic: userAuth.idClient,
                 dateStart: selectedDate.start,
                 dateEnd: selectedDate.end
             }

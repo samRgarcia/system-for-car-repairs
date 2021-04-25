@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import {REGISTER_START_JOB} from "../../costants/urls";
 import {ContextSuggestionsJobsList} from "../../Context/ContextSuggestionsJobsList";
+import {ContextAuth} from "../../Context/ContextAuth";
 
 const useStyles = makeStyles({
     root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 
 function CardsMySuggestions(props) {
     const classes = useStyles();
+    const {userAuth} = useContext(ContextAuth);
     const {isUpdate,setIsUpdate} = useContext(ContextSuggestionsJobsList)
 
     const initaliWork = async (data) => {
@@ -35,7 +37,7 @@ function CardsMySuggestions(props) {
         console.log(data)
         await axios.post(REGISTER_START_JOB, {
             idCar: data.cars_idcars,
-            idMechanical: 1
+            idMechanical: userAuth.idClient
         })
             .then((res) => {
                 console.log(res)

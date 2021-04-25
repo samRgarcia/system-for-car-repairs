@@ -12,6 +12,7 @@ import RegisterFormCar from "./RegisterFormCar";
 import DescriptionProblemsCar from "./DescriptionProblemsCar";
 import {REGISTER_NEW_PROBLEMS} from "../costants/urls";
 import Loading from "../common/Loading";
+import {ContextAuth} from "../Context/ContextAuth";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,6 +53,7 @@ function DetailSend() {
 export default function MainStepper() {
     const classes = useStyles();
     const history = useHistory();
+    const {userAuth} = useContext(ContextAuth)
     const {registerProblems, problems, listProblems,restData} = useContext(RegisterCarProblems)
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
@@ -106,12 +108,13 @@ export default function MainStepper() {
         await axios.post(REGISTER_NEW_PROBLEMS, {
             registerProblems,
             problems,
-            listProblems
+            listProblems,
+            client_idclient:userAuth.idClient
         }).then((res) => {
             console.log(res)
             alert("Registration done")
             restData()
-            history.push('/home-cliente')
+            history.push('/home-client')
         }).catch((e) => {
             console.log(e)
             alert("service not available")

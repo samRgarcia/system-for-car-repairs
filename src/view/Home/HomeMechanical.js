@@ -1,12 +1,12 @@
 import React from "react";
 import ListBox from "../../components/HomeMechanicalItem/listbox";
+import Loyaut from "../../components/Loyaut";
 
 const HomeMechanical = () => {
     return (
-        <React.Fragment>
-            <h2>Home Mechanical</h2>
+        <Loyaut>
             <ListBox/>
-        </React.Fragment>
+        </Loyaut>
     )
 }
 

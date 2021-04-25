@@ -20,4 +20,5 @@ export const GET_ITEM_PROBLEMS = `${API_URL}/mechanic/view-item-problems`;
 export const GET_DATE_RANKS = `${API_URL}/mechanic/view-date-end-start`;
 
 export const POST_SIGN_UP = `${API_URL}/login/register-user`;
+export const POST_SIGN = `${API_URL}/login/login`;
 

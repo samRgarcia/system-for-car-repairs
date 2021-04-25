@@ -1,11 +1,12 @@
 import React from "react";
 import ListAllSuggestions from "../../components/client/SuggestionsView/ListAllSuggestions";
+import Loyaut from "../../components/Loyaut";
 
 const SuggestionsView = () => {
-    return(
-        <React.Fragment>
-            <ListAllSuggestions />
-        </React.Fragment>
+    return (
+        <Loyaut>
+            <ListAllSuggestions/>
+        </Loyaut>
     )
 }
 

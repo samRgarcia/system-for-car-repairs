@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 export default function CardRoutes(props) {
     const classes = useStyles();
     const history = useHistory();
-    const bull = <span className={classes.bullet}>•</span>;
 
     const pushRoutes = (url) => {
         history.push(url)
@@ -43,7 +42,7 @@ export default function CardRoutes(props) {
                     ...
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
+                    {props.data.descriptions}
                     <br/>
                     {'"a benevolent smile"'}
                 </Typography>

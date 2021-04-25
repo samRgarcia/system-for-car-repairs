@@ -1,4 +1,4 @@
-import {BrowserRouter, Route,Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "../../view/Home";
 import NewProblemView from "../../view/cliente/NewProblemView";
 import Loyaut from "../Loyaut";
@@ -18,22 +18,23 @@ const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
-            <Route path="/sing" component={SignInSide}/>
-            <Route path="/sing-up" component={SignUp}/>
-            <Loyaut>
-                <Route path="/home" component={Home}/>
-                <Route path="/new-problem" component={NewProblemView}/>
-                <Route path="/all-price" component={PriceView}/>
-                <Route path="/all-suggestions" component={SuggestionsView}/>
-                <Route path="/history-cliente" component={HistoryView}/>
-                <Route path="/home-cliente" component={HomeClient}/>
-                <Route path="/home-mechanical" component={HomeMechanical}/>
+                <Route exact path="/sing" component={SignInSide}/>
+                <Route exact path="/sing-up" component={SignUp}/>
 
-                <Route path="/view-jobs" component={JobsView}/>
-                <Route path="/jobs-suggestions" component={SuggestionsJobsView}/>
-                <Route path="/all-work" component={WorkView}/>
-                <Route path="/date-rank" component={DateRanksView}/>
-            </Loyaut>
+
+                <Route exac path="/home" component={Home}/>
+                <Route exac path="/new-problem" component={NewProblemView}/>
+                <Route exac path="/all-price" component={PriceView}/>
+                <Route exac path="/all-suggestions" component={SuggestionsView}/>
+                <Route exac path="/history-cliente" component={HistoryView}/>
+                <Route exac path="/home-client" component={HomeClient}/>
+                <Route exac path="/home-mechanical" component={HomeMechanical}/>
+
+                <Route exac path="/view-jobs" component={JobsView}/>
+                <Route exac path="/jobs-suggestions" component={SuggestionsJobsView}/>
+                <Route exac path="/all-work" component={WorkView}/>
+                <Route exac path="/date-rank" component={DateRanksView}/>
+                <Route path="*" component={SignInSide}/>
             </Switch>
         </BrowserRouter>
     )

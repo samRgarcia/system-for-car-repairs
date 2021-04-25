@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
-import {GET_MY_ALL_JOBS} from "../../components/costants/urls";
+import React from "react";
 import LisWork from "../../components/mechanical/WorkView/ListWork";
+import Loyaut from "../../components/Loyaut";
 
 const WorkView = () => {
 
-    return(
-        <React.Fragment>
+    return (
+        <Loyaut>
             <h1>WorkView</h1>
-            <LisWork />
-        </React.Fragment>
-        )
+            <LisWork/>
+        </Loyaut>
+    )
 }
 
 export default WorkView;
