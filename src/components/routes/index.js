@@ -1,4 +1,4 @@
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route,Switch} from 'react-router-dom';
 import Home from "../../view/Home";
 import NewProblemView from "../../view/cliente/NewProblemView";
 import Loyaut from "../Loyaut";
@@ -10,10 +10,16 @@ import HomeMechanical from "../../view/Home/HomeMechanical";
 import JobsView from "../../view/mechanical/JobsView";
 import WorkView from "../../view/mechanical/WorkView";
 import SuggestionsJobsView from "../../view/mechanical/SuggestionsJobsView";
+import DateRanksView from "../../view/mechanical/DateRanksView";
+import SignInSide from "../../view/Login/Sing-in-side";
+import SignUp from "../../view/Login/SignUp";
 
 const Routes = () => {
     return (
         <BrowserRouter>
+            <Switch>
+            <Route path="/sing" component={SignInSide}/>
+            <Route path="/sing-up" component={SignUp}/>
             <Loyaut>
                 <Route path="/home" component={Home}/>
                 <Route path="/new-problem" component={NewProblemView}/>
@@ -26,8 +32,9 @@ const Routes = () => {
                 <Route path="/view-jobs" component={JobsView}/>
                 <Route path="/jobs-suggestions" component={SuggestionsJobsView}/>
                 <Route path="/all-work" component={WorkView}/>
-
+                <Route path="/date-rank" component={DateRanksView}/>
             </Loyaut>
+            </Switch>
         </BrowserRouter>
     )
 }

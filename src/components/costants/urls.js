@@ -17,4 +17,7 @@ export const REGISTER_START_JOB = `${API_URL}/mechanic/job-start`;
 export const UPDATE_FINISH_JOB = `${API_URL}/mechanic/job-finish`;
 export const GET_MY_ALL_JOBS = `${API_URL}/mechanic/view-my-all-jobs`;
 export const GET_ITEM_PROBLEMS = `${API_URL}/mechanic/view-item-problems`;
+export const GET_DATE_RANKS = `${API_URL}/mechanic/view-date-end-start`;
+
+export const POST_SIGN_UP = `${API_URL}/login/register-user`;
 

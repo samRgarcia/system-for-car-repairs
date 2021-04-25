@@ -5,7 +5,8 @@ import CardRoutes from "./CardRoutes";
 const ListModuleClient=[
     {name:"Jobs",url:"/view-jobs"},
     {name:"My suggestions",url:"/jobs-suggestions"},
-    {name:"Works",url:"all-work"},
+    {name:"Works",url:"/all-work"},
+    {name:"Dates",url:"/date-rank"},
 ]
 
 const ListBox =()=>{
