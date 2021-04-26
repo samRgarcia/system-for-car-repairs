@@ -28,7 +28,7 @@ export default function SignUp() {
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
-            <div className={classes.paper}>
+            <div className={ `${classes.paper}  animate__animated animate__fadeIn`}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>

@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from "axios";
+import Swal from "sweetalert2";
 import {RegisterCarProblems} from "../Context/ContextRegisterCarProblems";
 import {makeStyles} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -13,6 +14,7 @@ import DescriptionProblemsCar from "./DescriptionProblemsCar";
 import {REGISTER_NEW_PROBLEMS} from "../costants/urls";
 import Loading from "../common/Loading";
 import {ContextAuth} from "../Context/ContextAuth";
+import {Container} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['register car', 'record mechanical problems', 'Send'];
+    return ['Register car', 'Record mechanical problems', 'Send'];
 }
 
 function getStepContent(step) {
@@ -45,16 +47,25 @@ function getStepContent(step) {
 }
 
 function DetailSend() {
-    return (<div>
-        <h1>Send problem to workshop?</h1>
-    </div>)
+    return (
+        <Container maxWidth="sm" style={{
+            height: '500px',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            backgroundColor: "white",
+            padding: "32px"
+        }}>
+            <h2>Enviar esta informacion</h2>
+        </Container>
+    )
 }
 
 export default function MainStepper() {
     const classes = useStyles();
     const history = useHistory();
     const {userAuth} = useContext(ContextAuth)
-    const {registerProblems, problems, listProblems,restData} = useContext(RegisterCarProblems)
+    const {registerProblems, problems, listProblems, restData} = useContext(RegisterCarProblems)
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const [isLoading, setIsLoading] = useState(false);
@@ -109,10 +120,14 @@ export default function MainStepper() {
             registerProblems,
             problems,
             listProblems,
-            client_idclient:userAuth.idClient
+            client_idclient: userAuth.idClient
         }).then((res) => {
             console.log(res)
-            alert("Registration done")
+            Swal.fire(
+                'Registration done!',
+                '',
+                'success'
+            )
             restData()
             history.push('/home-client')
         }).catch((e) => {

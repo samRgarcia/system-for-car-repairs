@@ -35,6 +35,10 @@ export default function CardJobs(props) {
         setSeeMore(data)
     }
 
+    const seeMoreDetails = (idProblems) => {
+        console.log(idProblems)
+    }
+
     return (
         <React.Fragment>
             <FormModalSolutions
@@ -60,8 +64,8 @@ export default function CardJobs(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={()=>handeChange(props.data)}>Suggestions</Button>
-                    <Button size="small">see more</Button>
+                    <Button size="small" onClick={() => handeChange(props.data)}>Suggestions</Button>
+                    <Button size="small" onClick={()=>seeMoreDetails(props.data.idmechanical_problems)}>see more</Button>
 
                 </CardActions>
             </Card>

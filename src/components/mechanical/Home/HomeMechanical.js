@@ -25,8 +25,8 @@ export default function HomeMechanical({url}) {
     }
 
     return (
-        <Breadcrumbs aria-label="breadcrumb">
-            <Link color="inherit" onClick={() => handleClick(url)} className={classes.link}>
+        <Breadcrumbs aria-label="breadcrumb" color={"while"}>
+            <Link color="secondary"  onClick={() => handleClick(url)} className={classes.link}>
                 <HomeIcon className={classes.icon}/>
                 Home
             </Link>

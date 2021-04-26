@@ -20,8 +20,6 @@ const Routes = () => {
             <Switch>
                 <Route exact path="/sing" component={SignInSide}/>
                 <Route exact path="/sing-up" component={SignUp}/>
-
-
                 <Route exac path="/home" component={Home}/>
                 <Route exac path="/new-problem" component={NewProblemView}/>
                 <Route exac path="/all-price" component={PriceView}/>

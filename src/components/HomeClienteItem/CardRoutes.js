@@ -33,7 +33,7 @@ export default function CardRoutes(props) {
     }
 
     return (
-        <Card className={classes.root}>
+        <Card className={`${classes.root} animate__animated animate__backInDown`}>
             <CardContent>
                 <Typography variant="h5" component="h2">
                     {props.data.name}

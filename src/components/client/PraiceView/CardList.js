@@ -47,7 +47,7 @@ export default function CardList(props) {
     }
 
     return (
-        <Card className={classes.root}>
+        <Card className={ `${classes.root} animate__animated animate__bounce`}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {`${props.data.model} -${props.data.license_place}`}

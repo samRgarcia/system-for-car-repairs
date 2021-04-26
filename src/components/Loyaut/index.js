@@ -20,12 +20,18 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeMechanical from "../mechanical/Home/HomeMechanical";
 import {ContextAuth} from "../Context/ContextAuth";
+import {Container} from "@material-ui/core";
+import {Home} from "@material-ui/icons";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        backgroundImage: 'linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://source.unsplash.com/random)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -87,39 +93,33 @@ function PersistentDrawerLeft({children}) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
-    function handleDrawerOpen() {
-        setOpen(true);
-    }
-
-    function handleDrawerClose() {
-        setOpen(false);
-    }
 
     if (!userAuth.idClient) {
         history.replace("/sing")
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{height: "100vh"}}>
             <CssBaseline/>
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
+                color={"inherit"}
             >
                 <Toolbar>
                     <IconButton
                         color="inherit"
                         aria-label="Open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={() => history.replace(userAuth.rol === "client" ? "/home-client" : "/home-mechanical")}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
-                        <MenuIcon/>
+                        <Home/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        { `${userAuth.rol} - ${userAuth.name} ${userAuth.first_name}`}
+                        {`${userAuth.rol.toUpperCase()} - ${userAuth.name.toUpperCase()} ${userAuth.first_name.toUpperCase()}`}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -133,28 +133,12 @@ function PersistentDrawerLeft({children}) {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton
+                        onClick={() => history.replace(userAuth.rol === "client" ? "/home-client" : "/home-mechanical")}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </div>
                 <Divider/>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider/>
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -162,8 +146,9 @@ function PersistentDrawerLeft({children}) {
                 })}
             >
                 <div className={classes.drawerHeader}/>
-                <HomeMechanical url={userAuth.rol === "client" ? "/home-client" : "/home-mechanical"}/>
-                {children}
+                <Container fixed maxWidth="xl" style={{backgroundColor: "#ffffff82", height: "80%"}}>
+                    {children}
+                </Container>
             </main>
         </div>
     );

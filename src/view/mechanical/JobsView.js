@@ -6,7 +6,6 @@ import Loyaut from "../../components/Loyaut";
 const JobsView = () => {
     return (
         <Loyaut>
-            <h1>Jobs view</h1>
             <ListJobs/>
         </Loyaut>
     )

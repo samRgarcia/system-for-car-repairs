@@ -10,7 +10,7 @@ import Link from "@material-ui/core/Link";
 import {useStyles} from "./makeStyle";
 import TextFields from "../../components/common/TextFields";
 import axios from "axios";
-import {POST_SIGN, POST_SIGN_UP} from "../../components/costants/urls";
+import {POST_SIGN} from "../../components/costants/urls";
 import {ContextAuth} from "../../components/Context/ContextAuth";
 
 
@@ -76,7 +76,7 @@ const FormLogin = () => {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
+                    className={ `${classes.submit} animate__animated animate__fadeIn`}
                 >
                     Sign In
                 </Button>

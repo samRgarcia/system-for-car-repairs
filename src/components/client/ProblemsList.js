@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import {List,ListSubheader,ListItem,ListItemIcon,ListItemText} from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,8 +26,28 @@ export default function ProblemsList({lista=[{descriptions:"..."}]}) {
 
     return (
         <List className={classes.root} subheader={<li />}>
-            {lista.map((item) => (
-                <li key={`section-${item.descriptions}`} className={classes.listSection}>
+            {lista.map((item,index) => (
+                <List key={index} component="nav" aria-label="main mailbox folders">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <CheckIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={item.descriptions} />
+                    </ListItem>
+                </List>
+            ))}
+        </List>
+    );
+}
+
+
+  function ProblemsList2({lista=[{descriptions:"..."}]}) {
+    const classes = useStyles();
+
+    return (
+        <List className={classes.root} subheader={<li />}>
+            {lista.map((item,index) => (
+                <li key={index} className={classes.listSection}>
                     <ul className={classes.ul}>
                         <ListSubheader>{`* ${item.descriptions}`}</ListSubheader>
                     </ul>

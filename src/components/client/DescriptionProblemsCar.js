@@ -3,6 +3,7 @@ import {RegisterCarProblems} from "../Context/ContextRegisterCarProblems";
 import InputTextGeneric from "../common/InputTextGeneric";
 import ButtonGeneric from "../common/ButtonGeneric";
 import ProblemsList from "./ProblemsList";
+import {Container, Grid} from "@material-ui/core";
 
 const DescriptionProblemsCar = () => {
     const {
@@ -11,7 +12,7 @@ const DescriptionProblemsCar = () => {
         listProblems,
         setListProblems
     } = useContext(RegisterCarProblems);
-    const [descriptionItem,setDescriptionItem]= React.useState('');
+    const [descriptionItem, setDescriptionItem] = React.useState('');
 
     const handlChangeProblems = (evt) => {
         setProblems({
@@ -20,40 +21,56 @@ const DescriptionProblemsCar = () => {
         })
     }
     const handlChangeProblemsItem = (evt) => {
-        setDescriptionItem( evt.target.value)
+        setDescriptionItem(evt.target.value)
     }
 
     const addItemListProblems = () => {
-        setListProblems((preven)=>{
+        setListProblems((preven) => {
             preven = [...preven];
-            let mutar = [{descriptions:descriptionItem}];
+            let mutar = [{descriptions: descriptionItem}];
             return preven.concat(mutar)
         });
         setDescriptionItem('')
     }
-console.log(listProblems )
+    console.log(listProblems)
 
     return (
-        <form>
-            <InputTextGeneric
-                Name="descriptions"
-                Label="Descriptions General"
-                onChange={handlChangeProblems}
-                value={problems.descriptions}
-            />
-            <InputTextGeneric
-                Name="descriptions"
-                Label="Problems"
-                onChange={handlChangeProblemsItem}
-                value={descriptionItem}
-            />
-            <ButtonGeneric
-                disabled={descriptionItem ? false:true}
-                Title="Agregar"
-                onClick={addItemListProblems}
-            />
-            <ProblemsList lista={listProblems}/>
-        </form>
+        <Container maxWidth="sm" style={{height:'500px',display:"flex",flexDirection:"column",justifyContent:"start",backgroundColor:"white",padding:"32px"}}>
+        <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                spacing={2}
+            >
+                <Grid item xs={12} sm={12}>
+                    <InputTextGeneric
+                        Name="descriptions"
+                        Label="Descriptions General"
+                        onChange={handlChangeProblems}
+                        value={problems.descriptions}
+                    />
+                </Grid>
+                <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <InputTextGeneric
+                            Name="descriptions"
+                            Label="Problems"
+                            onChange={handlChangeProblemsItem}
+                            value={descriptionItem}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={5}>
+                        <ButtonGeneric
+                            disabled={descriptionItem ? false : true}
+                            Title="Agregar"
+                            onClick={addItemListProblems}
+                        />
+                    </Grid>
+                    <ProblemsList lista={listProblems}/>
+                </Grid>
+            </Grid>
+        </Container>
     )
 
 }

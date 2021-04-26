@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import CardRoutes from "./CardRoutes";
 
 const ListModuleClient = [
-    {name: "Jobs", url: "/view-jobs"},
+    {name: "View active jobs", url: "/view-jobs"},
     {name: "My suggestions", url: "/jobs-suggestions"},
     {name: "Works", url: "/all-work"},
     {name: "Dates", url: "/date-rank"},
