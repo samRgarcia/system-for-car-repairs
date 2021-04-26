@@ -3,12 +3,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
 import ModalWorkItem from "./ModalWorkItem";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,20 +15,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FormWork({isForm, setIsForm, data = [],setData}) {
+export default function FormWork({isForm, setIsForm, data = [], setData}) {
     const classes = useStyles();
-    const [checked, setChecked] = React.useState([0]);
 
-    const handleToggle = (value) => () => {
-        value.progress="initial" ? true:false
-        console.log(value,"value")
-        const dataUpdate=[...data];
+    /*const handleToggle = (value) => () => {
+        value.progress = "initial" ? true : false
+        const dataUpdate = [...data];
         const index = value.idlist_problems;
         dataUpdate[index] = value;
-        console.log(dataUpdate[index],"update")
         setData([...dataUpdate])
-    };
+    };*/
 
+console.log(data)
     return (
         <ModalWorkItem isForm={isForm} setIsForm={setIsForm}>
             <List className={classes.root}>
@@ -39,15 +34,9 @@ export default function FormWork({isForm, setIsForm, data = [],setData}) {
                     const labelId = `checkbox-list-label-${value}`;
 
                     return (
-                        <ListItem key={value.description} role={undefined} dense button onClick={handleToggle(value)}>
+                        <ListItem key={value.description} role={undefined} dense button >
                             <ListItemIcon>
-                                <Checkbox
-                                    edge="start"
-                                    checked={value.progress}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{'aria-labelledby': labelId}}
-                                />
+                                <ArrowForwardIosIcon/>
                             </ListItemIcon>
                             <ListItemText id={labelId} primary={`${value.description}`}/>
                         </ListItem>

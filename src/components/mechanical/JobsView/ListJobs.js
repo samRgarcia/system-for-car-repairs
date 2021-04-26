@@ -8,7 +8,7 @@ import {Chip} from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 
 const ListJobs = () => {
-    const {listProbles, setProblems, isUpdate, setIsUpdate} = useContext(ContextJobsList)
+    const {listProbles, setProblems, isUpdate} = useContext(ContextJobsList)
 
     useEffect(() => {
         axios.get(GET_MECHANICAL_PROBLEMS)
@@ -27,7 +27,7 @@ const ListJobs = () => {
             View Jobs
             </div>
             {!listProbles.length &&
-            <Chip className="animate__animated animate__bounce" color="secondary" label="No quote for the moment"
+            <Chip className="animate__animated animate__bounce" color="secondary" label="Waiting for new jobs"
                   avatar={<Avatar>M</Avatar>}/>}
             <Grid container spacing={3}>
                 {listProbles.map(item => (

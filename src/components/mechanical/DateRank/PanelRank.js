@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import DateInput from "./DateInput";
-import {Button} from "@material-ui/core";
+import {Button, Grid} from "@material-ui/core";
 import InputTextGeneric from "../../common/InputTextGeneric";
 import axios from "axios";
 import {GET_DATE_RANKS} from "../../costants/urls";
@@ -45,10 +45,23 @@ const PanelRank = () => {
 
     return (
         <React.Fragment>
-            <DateInput selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
-            <ListRank listData={state}/>
-            <InputTextGeneric Label={"Total amount"} value={amount}/>
+            <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="flex-start"
+                spacing={2}
+            >
+                    <DateInput selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
+                <Grid item xs={12}>
+                    <ListRank listData={state}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <InputTextGeneric Label={"Total amount"} value={amount}/>
+                </Grid>
+
             <Button variant={"contained"} onClick={getAmountStartEnd}>Aplication</Button>
+            </Grid>
         </React.Fragment>
     )
 }

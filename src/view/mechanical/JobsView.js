@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import ListJobs from "../../components/mechanical/JobsView/ListJobs";
 import Loyaut from "../../components/Loyaut";
 

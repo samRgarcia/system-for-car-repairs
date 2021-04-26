@@ -6,12 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function ModalGeneric({children, isForm = false, setIsForm, Title = "", Descriptions = "not descriptios",data, onClick = ()=>{}}) {
-
-    const handleClickOpen = () => {
-        setIsForm(true);
-    };
-
+export default function ModalGeneric({children, isForm = false, setIsForm, Title = "", Descriptions = "not descriptios", data, onClick = () => {}}) {
     const handleClose = () => {
         setIsForm(false);
     };
@@ -35,8 +30,8 @@ export default function ModalGeneric({children, isForm = false, setIsForm, Title
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={()=>handlOnclik(data)} color="primary">
-                        Subscribe
+                    <Button onClick={() => handlOnclik(data)} color="primary">
+                        Send
                     </Button>
                 </DialogActions>
             </Dialog>

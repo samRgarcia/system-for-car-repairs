@@ -56,7 +56,7 @@ function DetailSend() {
             backgroundColor: "white",
             padding: "32px"
         }}>
-            <h2>Enviar esta informacion</h2>
+            <h2>Register mechanical problem</h2>
         </Container>
     )
 }

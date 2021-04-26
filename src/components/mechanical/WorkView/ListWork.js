@@ -8,7 +8,7 @@ import {ContextAuth} from "../../Context/ContextAuth";
 
 const LisWork = () => {
     const {userAuth} = useContext(ContextAuth);
-    const {listJobs,setList, isUpdate, setIsUpdate} = useContext(ContextListAllWork)
+    const {listJobs,setList, isUpdate} = useContext(ContextListAllWork)
 
     useEffect(()=>{
         axios.get(GET_MY_ALL_JOBS,{params:{idMachinacal:userAuth.idClient}})

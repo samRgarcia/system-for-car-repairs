@@ -6,7 +6,7 @@ const WorkView = () => {
 
     return (
         <Loyaut>
-            <h1>WorkView</h1>
+            <div style={{textAlign:"center"}}><h1>WorkView</h1></div>
             <LisWork/>
         </Loyaut>
     )

@@ -6,16 +6,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function ModalWorkItem({children, isForm = false, setIsForm, Title = "", Descriptions = "not descriptios",data, onClick = ()=>{}}) {
+export default function ModalWorkItem({children, isForm = false, setIsForm, Title = "", Descriptions = "Other details",data, onClick = ()=>{}}) {
 
     const handleClose = () => {
         setIsForm(false);
     };
 
-    const handlOnclik = (data) => {
+    /*const handlOnclik = (data) => {
         onClick(data)
         setIsForm(false);
-    }
+    }*/
 
     return (
         <div>
@@ -29,11 +29,11 @@ export default function ModalWorkItem({children, isForm = false, setIsForm, Titl
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                        Close
                     </Button>
-                    <Button onClick={()=>handlOnclik(data)} color="primary">
+                    {/*<Button onClick={() => handlOnclik(data)} color="primary">
                         Subscribe
-                    </Button>
+                    </Button>*/}
                 </DialogActions>
             </Dialog>
         </div>

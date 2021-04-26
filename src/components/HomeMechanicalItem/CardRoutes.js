@@ -36,15 +36,13 @@ export default function CardRoutes(props) {
         <Card className={`${classes.root} animate__animated animate__backInDown`}>
             <CardContent>
                 <Typography variant="h5" component="h2">
-                    {props.data.name}
+                    {props.data.icon}  {props.data.name}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     ...
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br/>
-                    {'"a benevolent smile"'}
+                    {props.data.descriptions}
                 </Typography>
             </CardContent>
             <CardActions>

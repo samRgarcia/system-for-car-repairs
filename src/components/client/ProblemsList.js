@@ -41,19 +41,3 @@ export default function ProblemsList({lista=[{descriptions:"..."}]}) {
 }
 
 
-  function ProblemsList2({lista=[{descriptions:"..."}]}) {
-    const classes = useStyles();
-
-    return (
-        <List className={classes.root} subheader={<li />}>
-            {lista.map((item,index) => (
-                <li key={index} className={classes.listSection}>
-                    <ul className={classes.ul}>
-                        <ListSubheader>{`* ${item.descriptions}`}</ListSubheader>
-                    </ul>
-                </li>
-            ))}
-        </List>
-    );
-}
-

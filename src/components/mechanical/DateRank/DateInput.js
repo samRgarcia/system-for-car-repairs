@@ -21,7 +21,7 @@ export default function DateInput({selectedDate, setSelectedDate}) {
                 <KeyboardDatePicker
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Date picker dialog"
+                    label="Date Start"
                     format="MM/dd/yyyy"
                     value={selectedDate.start}
                     onChange={(date) => setSelectedDate({...selectedDate,start:date})}
@@ -32,7 +32,7 @@ export default function DateInput({selectedDate, setSelectedDate}) {
                 <KeyboardDatePicker
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Date picker dialog"
+                    label="Date End"
                     format="MM/dd/yyyy"
                     value={selectedDate.end}
                     onChange={(date) => setSelectedDate({...selectedDate,end:date})}

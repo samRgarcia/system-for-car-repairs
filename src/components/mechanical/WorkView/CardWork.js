@@ -45,7 +45,6 @@ export default function CardWork(props) {
     }
 
     const handlOpenModal = async (idProblems) => {
-        console.log(idProblems)
         await dataItemId(idProblems).then(() => setIsForm(!isForm));
     }
     const finishWork = async (idjobs_started) => {
@@ -73,12 +72,13 @@ export default function CardWork(props) {
                         {`${props.data.name} ${props.data.first_name} ${props.data.last_name}`}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        Client
+                        {`Client - Phone: ${props.data.phone}`}
+                    </Typography>
+                    <Typography className={classes.pos} color="textSecondary">
+                        {`Email: ${props.data.email}`}
                     </Typography>
                     <Typography variant="body2" component="p">
                         {props.data.descriptions}
-                        <br/>
-                        {`$ ${props.data.price}`}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -86,7 +86,7 @@ export default function CardWork(props) {
                         <h1>Terminado</h1> :
                         <>
                             <Button onClick={() => handlOpenModal(props.data.idmechanical_problems)}
-                                    size="small">Options</Button>
+                                    size="small">see more</Button>
                             <Button
                                 onClick={() => finishWork(props.data.idjobs_started)}
                                 size="small">finish</Button>

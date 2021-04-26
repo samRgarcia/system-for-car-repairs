@@ -6,6 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormModalSolutions from "./FormModalSolution";
+import ListItemProblems from "./ListItemProblems";
+import axios from "axios";
+import {GET_ITEM_PROBLEMS} from "../../costants/urls";
 
 const useStyles = makeStyles({
     root: {
@@ -28,6 +31,8 @@ export default function CardJobs(props) {
     const classes = useStyles();
     const [isForm, setIsForm] = useState(false);
     const [seeMore, setSeeMore] = useState('');
+    const [open, setOpen] = React.useState(false);
+    const [listItem, setListItem] = useState([]);
 
     const handeChange = (data) => {
         console.log(data)
@@ -35,8 +40,16 @@ export default function CardJobs(props) {
         setSeeMore(data)
     }
 
-    const seeMoreDetails = (idProblems) => {
+    const seeMoreDetails = async (idProblems) => {
         console.log(idProblems)
+        axios.get(GET_ITEM_PROBLEMS, {params: {idMachinacal: idProblems}})
+            .then((res) => {
+                setListItem(res.data)
+                setOpen(true)
+            }).catch((e) => {
+            console.log(e)
+        })
+
     }
 
     return (
@@ -46,6 +59,7 @@ export default function CardJobs(props) {
                 setIsForm={setIsForm}
                 seeMore={seeMore}
             />
+            <ListItemProblems data={listItem} open={open} setOpen={setOpen}/>
             <Card className={classes.root}>
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -65,7 +79,8 @@ export default function CardJobs(props) {
                 </CardContent>
                 <CardActions>
                     <Button size="small" onClick={() => handeChange(props.data)}>Suggestions</Button>
-                    <Button size="small" onClick={()=>seeMoreDetails(props.data.idmechanical_problems)}>see more</Button>
+                    <Button size="small" onClick={() => seeMoreDetails(props.data.idmechanical_problems)}>see
+                        more</Button>
 
                 </CardActions>
             </Card>

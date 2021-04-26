@@ -60,10 +60,10 @@ const FormLogin = () => {
             <Form>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <TextFields label={"user"} name={"user"} type={"text"} placeholder=""/>
+                        <TextFields label={"User"} name={"user"} type={"text"} placeholder=""/>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextFields label={"password"} name={"password"} type={"password"} placeholder=".."/>
+                        <TextFields label={"Password"} name={"password"} type={"password"} placeholder=".."/>
                     </Grid>
                 </Grid>
 
