@@ -12,7 +12,6 @@ const HistoryView = () => {
     useEffect(() => {
         axios.get(GET_ID_CLIENT_TRACING_HISTORY, {params: {idClient: userAuth.idClient}})
             .then((res) => {
-                console.log(res.data)
                 setProbles(res.data)
             })
             .catch((error) => {

@@ -27,7 +27,6 @@ const FormLogin = () => {
             password: data.password,
         })
             .then((res) => {
-                console.log(res.data)
                 setUserAuth(res.data)
                 setIsActive(false)
                 if (res.data.rol === "Mechanical") {

@@ -3,9 +3,7 @@ import {useHistory} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import Swal from "sweetalert2";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import {useStyles} from "./makeStyle";
@@ -14,18 +12,7 @@ import SelectRol from "./SelectRol";
 import SelectGender from "./SelectGender";
 import axios from "axios";
 import {POST_SIGN_UP} from "../../components/costants/urls";
-/*
-"name": "Sam",
-        "last_name": "RIV",
-        "first_name": "Gar",
-        "gender": "H",
-        "phone": "222222",
-        "email": "pruebas",
-        "user":"prueba",
-        "password":"123",
-        "rol":"client"
 
- */
 
 const FormRegister = () => {
     const classes = useStyles();
@@ -33,7 +20,6 @@ const FormRegister = () => {
     const [isActive,setIsActive]=useState(false)
 
     const handlChange = async (data) => {
-        console.log(data)
         setIsActive(true)
         await axios.post(POST_SIGN_UP, {
             name: data.name,
@@ -47,8 +33,11 @@ const FormRegister = () => {
             rol: data.rol
         })
             .then((res) => {
-                console.log(res)
-                alert("Register correct")
+                Swal.fire(
+                    'Register correct',
+                    '!',
+                    'success'
+                )
                 setIsActive(false)
                 history.push("/sing")
             })
